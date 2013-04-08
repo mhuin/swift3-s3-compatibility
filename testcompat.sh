@@ -7,6 +7,9 @@
 
 # do not forget to source eucarc before !
 
+# or set your own credentials in a file
+[ -f S3Keys ] && source S3Keys
+
 #-- boto
 echo "Testing boto library"
 echo "------------"
@@ -17,13 +20,13 @@ nosetests tests/py/boto_test.py -v
 echo "Testing libcloud library"
 echo "------------"
 
-nosetests tests/py/libcloud_test.py
+nosetests tests/py/libcloud_test.py -v
 
 #-- fog
 echo "Testing lfog library"
 echo "------------"
 
-ruby tests/rb/fog_test.rb
+#ruby tests/rb/fog_test.rb
 
 #-- jclouds
 echo "Testing jclouds library"
