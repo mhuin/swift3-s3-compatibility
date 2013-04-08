@@ -11,19 +11,19 @@
 echo "Testing boto library"
 echo "------------"
 
-python tests/boto_test.py
+python tests/py/boto_test.py
 
 #-- libcloud
 echo "Testing libcloud library"
 echo "------------"
 
-python tests/libcloud_test.py
+python tests/py/libcloud_test.py
 
 #-- fog
 echo "Testing lfog library"
 echo "------------"
 
-ruby tests/fog_test.rb
+ruby tests/rb/fog_test.rb
 
 #-- jclouds
 echo "Testing jclouds library"
