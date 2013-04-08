@@ -27,12 +27,12 @@ class TestBoto:
             for x in bucket.get_all_keys():
                 print "Delete key: %s" % (x.name)
                 x.delete()
-            connection.delete_bucket("boto_s3")
+            cls.connection.delete_bucket("boto_s3")
         except(boto.exception.S3ResponseError):
             pass
 
     def test_01_create_bucket(self):
-        """Creating a bucket""",
+        """Creating a bucket"""
         bucket = self.connection.create_bucket("boto_s3")
         #assert bucket
 
