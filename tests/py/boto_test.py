@@ -3,82 +3,65 @@
 
 
 import boto
-import sys
 import boto.s3.connection
 import boto.s3.key
 import boto.exception
 import StringIO
-import os
-import urlparse
+from common import s3_parsed_url, access_key, secret_key
 
-s3_url = os.environ.get('S3_URL')
-if not s3_url:
-    print "Source your devstack eucarc or provide a " \
-            "S3_URL EC2_SECRET_KEY EC2_SECRET_KEY env variable."
-    sys.exit(1)
 
-parsed = urlparse.urlparse(s3_url)
+class TestBoto:
 
-print parsed
+    @classmethod
+    def setup_class(cls):
+        cls.connection = boto.connect_s3(
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            port=s3_parsed_url.port,
+            host=s3_parsed_url.hostname,
+            is_secure=False,
+            calling_format=boto.s3.connection.OrdinaryCallingFormat())
 
-connection = boto.connect_s3(
-    aws_access_key_id=os.environ.get('EC2_ACCESS_KEY'),
-    aws_secret_access_key=os.environ.get('EC2_SECRET_KEY'),
-    port=parsed.port,
-    host=parsed.hostname,
-    is_secure=False,
-    calling_format=boto.s3.connection.OrdinaryCallingFormat())
+        try:
+            bucket = cls.connection.get_bucket("boto_s3")
+            for x in bucket.get_all_keys():
+                print "Delete key: %s" % (x.name)
+                x.delete()
+            connection.delete_bucket("boto_s3")
+        except(boto.exception.S3ResponseError):
+            pass
 
-try:
-    bucket = connection.get_bucket("boto_s3")
-    for x in bucket.get_all_keys():
-        print "Delete key: %s" % (x.name)
-        x.delete()
-    print "Deleting bucket: boto_s3"
-    connection.delete_bucket("boto_s3")
-except(boto.exception.S3ResponseError):
-    pass
+    def test_01_create_bucket(self):
+        """Creating a bucket""",
+        bucket = self.connection.create_bucket("boto_s3")
+        #assert bucket
 
-flag = False
-
-print "Creating bucket: boto_s3 ",
-try:
-    bucket = connection.create_bucket("boto_s3")
-    print "[PASSED]"
-    flag = True
-except:
-    print "[FAILED]"
-
-if flag:
-    try:
+    def test_02_add_key(self):
+        """Adding a key"""
         fp = StringIO.StringIO()
         fp.write('This was uploaded to swift from Boto.\n')
-        print "Adding a key ", 
+        bucket = self.connection.get_bucket("boto_s3")
         key = boto.s3.key.Key(bucket, "uploaded_from_s3.txt")
         key.set_contents_from_file(fp)
         fp.close()
-        print "[PASSED]"
-    except:
-        flag = False
-        print "[FAILED]"
+        #assert key
 
-if flag:
-    #Modify
-    print "Modifying a key ",
-    bucket = connection.get_bucket("boto_s3")
-    for x in bucket.get_all_keys():
-        if x.name == "uploaded_from_s3.txt":
-            fp = StringIO.StringIO()
-            fp.write('This was modified/uploaded to swift from Boto.\n')
-            key.set_contents_from_file(fp)
-            fp.close()
-            print "[PASSED]"
-    try:
-        bucket = connection.get_bucket("boto_s3")
+    def test_03_modify_key(self):
+        """Modifying a key"""
+        bucket = self.connection.get_bucket("boto_s3")
+        keys = [ x for x in bucket.get_all_keys() 
+                 if x.name == "uploaded_from_s3.txt" ]
+        assert len(keys) == 1
+        fp = StringIO.StringIO()
+        fp.write('This was modified/uploaded to swift from Boto.\n')
+        keys[0].set_contents_from_file(fp)
+        fp.close()
+        #assert keys[0]
+
+    def test_04_delete(self):
+        """Deleting everything"""
+        bucket = self.connection.get_bucket("boto_s3")
         for x in bucket.get_all_keys():
-            print "Delete key: %s" % (x.name)
             x.delete()
-        print "Deleting bucket: boto_s3"
-        connection.delete_bucket("boto_s3")
-    except(boto.exception.S3ResponseError):
-        pass
+        self.connection.delete_bucket("boto_s3")
+

@@ -5,19 +5,19 @@
 # run this script on the VM.
 # It is assumed the devstack environment is ready. If not, run setdevstack.sh
 
-
+# do not forget to source eucarc before !
 
 #-- boto
 echo "Testing boto library"
 echo "------------"
 
-python tests/py/boto_test.py
+nosetests tests/py/boto_test.py -v
 
 #-- libcloud
 echo "Testing libcloud library"
 echo "------------"
 
-python tests/py/libcloud_test.py
+nosetests tests/py/libcloud_test.py
 
 #-- fog
 echo "Testing lfog library"

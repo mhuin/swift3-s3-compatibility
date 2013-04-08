@@ -5,7 +5,7 @@
 #-- installing what's needed
 
 sudo aptitude update && sudo aptitude install python-netaddr git python-boto \
-     python-libcloud ruby-fog ruby maven
+     python-libcloud ruby-fog ruby maven python-nose
 
 if [ ! -d ./devstack ]; then 
     echo "pulling devstack"
@@ -39,7 +39,7 @@ EOF
 
 
 #-- Getting S3 like tokens
-source eucarc demo demo
+source eucarc
 echo "EC2 URL is $EC2_URL"
 echo "S3 URL is $S3_URL"
 echo "demo:demo EC2 access key is $EC2_ACCESS_KEY"
