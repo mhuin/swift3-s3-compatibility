@@ -56,7 +56,14 @@ class TestFog < Test::Unit::TestCase
                bucket.files.get('data.txt').body)
     end
 
-
+    def test_04_delete
+        bucket = @@connection.directories.get("fogs3testing")
+        bucket.files.each do |to_discard|
+            to_discard.destroy
+        end
+        bucket.destroy
+        assert_equal(0, @@connection.directories.size)
+    end
 
     
 end
