@@ -2,7 +2,7 @@
 
 require 'fog'
 require "test/unit"
-require "./common.rb"
+require File.expand_path(File.dirname(__FILE__) + "/common.rb")
 
 # Do not verify SSL (less secure)
 require 'excon'
