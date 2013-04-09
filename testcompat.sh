@@ -23,10 +23,10 @@ echo "------------"
 nosetests tests/py/libcloud_test.py -v
 
 #-- fog
-echo "Testing lfog library"
+echo "Testing fog library"
 echo "------------"
 
-#ruby tests/rb/fog_test.rb
+ruby tests/rb/fog_test.rb
 
 #-- jclouds
 echo "Testing jclouds library"
