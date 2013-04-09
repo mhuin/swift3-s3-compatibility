@@ -26,10 +26,17 @@ nosetests tests/py/libcloud_test.py -v
 echo "Testing fog library"
 echo "------------"
 
-ruby tests/rb/fog_test.rb
+# use rubygems if not working
+testoutput="$(ruby tests/rb/fog_test.rb 2>&1)"
+if [[ "$testoutput" =~ "fog (LoadError)" ]]
+then 
+    ruby -r rubygems tests/rb/fog_test.rb
+else
+    echo "$testoutput"
+fi
 
 #-- jclouds
-echo "Testing jclouds library"
-echo "------------"
+#echo "Testing jclouds library"
+#echo "------------"
 
 
