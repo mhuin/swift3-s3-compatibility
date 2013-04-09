@@ -48,23 +48,15 @@ class TestFog < Test::Unit::TestCase
     end
 
     def test_03_modify_key
-
-        assert(false, "Not implemented yet")
+        bucket = @@connection.directories.get("fogs3testing")
+        file = bucket.files.get('data.txt')
+        file.body = "This was modified with the fog library"
+        file.save
+        assert("This was modified with the fog library", 
+               bucket.files.get('data.txt').body)
     end
 
-    def test_04_delete
-        assert(false, "Not implemented yet")
-    end
 
-#    directory = connection.directories.get("all-my-data")
 
-#    local_file = File.open("/path/to/my/data.txt", "w")
-#    file = directory.files.get('data.txt')
-#    local_file.write(file.body)
-#    local_file.close
-
-#    file = directory.files.get('data.txt')
-#    file.body = File.open("/path/to/my/data.txt")
-#    file.save
     
 end
