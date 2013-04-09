@@ -1,0 +1,30 @@
+proxy-server Calling Swift3 Middleware (txn: tx97a15b52f44e4df3a9b50bbc2f622bc3)
+proxy-server {'headers': {'Date': 'Tue, 09 Apr 2013 14:22:58 +0000', 'Host': 'fogs3testing.46.231.128.136:8080', '
+Content-Type': None, 'Authorization': 'AWS b3c4318d03b5425fad1d2c3d97d23679:Nrpa4Kvez+rGqpZZs56eqCofOMI=', 'User-A
+gent': 'fog/1.10.1'}, 'environ': {'HTTP_AUTHORIZATION': 'AWS b3c4318d03b5425fad1d2c3d97d23679:Nrpa4Kvez+rGqpZZs56e
+qCofOMI=', 'SCRIPT_NAME': '', 'swift.trans_id': 'tx97a15b52f44e4df3a9b50bbc2f622bc3', 'REQUEST_METHOD': 'GET', 'PA
+TH_INFO': '/', 'SERVER_PROTOCOL': 'HTTP/1.0', 'HTTP_USER_AGENT': 'fog/1.10.1', 'eventlet.posthooks': [], 'SERVER_N
+AME': '10.43.75.9', 'REMOTE_ADDR': '46.231.128.136', 'eventlet.input': <eventlet.wsgi.Input object at 0x20eaed0>, 
+'wsgi.url_scheme': 'http', 'SERVER_PORT': '8080', 'wsgi.input': <swift.common.utils.InputProxy object at 0x20ea050
+>, 'HTTP_HOST': 'fogs3testing.46.231.128.136:8080', 'wsgi.multithread': True, 'wsgi.version': (1, 0), 'GATEWAY_INT
+ERFACE': 'CGI/1.1', 'wsgi.run_once': False, 'wsgi.errors': <swift.common.utils.LoggerFileObject object at 0x19cc99
+0>, 'wsgi.multiprocess': False, 'HTTP_DATE': 'Tue, 09 Apr 2013 14:22:58 +0000', 'CONTENT_TYPE': None, 'swift.cache
+': <swift.common.memcached.MemcacheRing object at 0x2021750>}}
+proxy-server Calling S3Token middleware. (txn: tx97a15b52f44e4df3a9b50bbc2f622bc3)
+proxy-server Connecting to Keystone sending this JSON: {"credentials": {"access": "b3c4318d03b5425fad1d2c3d97d2367
+9", "token": "R0VUCgoKVHVlLCAwOSBBcHIgMjAxMyAxNDoyMjo1OCArMDAwMAov", "signature": "Nrpa4Kvez+rGqpZZs56eqCofOMI="}}
+ (txn: tx97a15b52f44e4df3a9b50bbc2f622bc3)
+proxy-server Keystone reply error: status=401 reason=Not Authorized (txn: tx97a15b52f44e4df3a9b50bbc2f622bc3)
+proxy-server Received error, exiting middleware with error: 401 Unauthorized (txn: tx97a15b52f44e4df3a9b50bbc2f622
+bc3)
+proxy-server 46.231.128.136 46.231.128.136 09/Apr/2013/14/22/58 GET /v1/b3c4318d03b5425fad1d2c3d97d23679%3Fformat%
+3Djson HTTP/1.0 403 - fog/1.10.1 R0VUCgoKVHVlLCAwOSBBcHIgMjAxMyAxNDoyMjo1OCArMDAwMAov - 124 - tx97a15b52f44e4df3a9
+b50bbc2f622bc3 - 0.0165 -
+proxy-server Calling Swift3 Middleware (txn: txaa0b3bc86d924fe8af24b69720859245)
+proxy-server {'headers': {'Date': 'Tue, 09 Apr 2013 14:22:58 +0000', 'Host': 'fogs3testing.46.231.128.136:8080', 'Content-Type': None, 'Authorization': 'AWS b3c4318d03b5425fad1d2c3d97d23679:Nrpa4Kvez+rGqpZZs56eqCofOMI=', 'User-Agent': 'fog/1.10.1'}, 'environ': {'HTTP_AUTHORIZATION': 'AWS b3c4318d03b5425fad1d2c3d97d23679:Nrpa4Kvez+rGqpZZs56eqCofOMI=', 'SCRIPT_NAME': '', 'swift.trans_id': 'txaa0b3bc86d924fe8af24b69720859245', 'REQUEST_METHOD': 'GET', 'PATH_INFO': '/', 'SERVER_PROTOCOL': 'HTTP/1.0', 'HTTP_USER_AGENT': 'fog/1.10.1', 'eventlet.posthooks': [], 'SERVER_NAME': '10.43.75.9', 'REMOTE_ADDR': '46.231.128.136', 'eventlet.input': <eventlet.wsgi.Input object at 0x20ea850>, 'wsgi.url_scheme': 'http', 'SERVER_PORT': '8080', 'wsgi.input': <swift.common.utils.InputProxy object at 0x20ead10>, 'HTTP_HOST': 'fogs3testing.46.231.128.136:8080', 'wsgi.multithread': True, 'wsgi.version': (1, 0), 'GATEWAY_INTERFACE': 'CGI/1.1', 'wsgi.run_once': False, 'wsgi.errors': <swift.common.utils.LoggerFileObject object at 0x19cc990>, 'wsgi.multiprocess': False, 'HTTP_DATE': 'Tue, 09 Apr 2013 14:22:58 +0000', 'CONTENT_TYPE': None, 'swift.cache': <swift.common.memcached.MemcacheRing object at 0x2021750>}}
+proxy-server Calling S3Token middleware. (txn: txaa0b3bc86d924fe8af24b69720859245)
+proxy-server Connecting to Keystone sending this JSON: {"credentials": {"access": "b3c4318d03b5425fad1d2c3d97d23679", "token": "R0VUCgoKVHVlLCAwOSBBcHIgMjAxMyAxNDoyMjo1OCArMDAwMAov", "signature": "Nrpa4Kvez+rGqpZZs56eqCofOMI="}} (txn: txaa0b3bc86d924fe8af24b69720859245)
+proxy-server Keystone reply error: status=401 reason=Not Authorized (txn: txaa0b3bc86d924fe8af24b69720859245)
+proxy-server Received error, exiting middleware with error: 401 Unauthorized (txn: txaa0b3bc86d924fe8af24b69720859245)
+proxy-server 46.231.128.136 46.231.128.136 09/Apr/2013/14/22/58 GET /v1/b3c4318d03b5425fad1d2c3d97d23679%3Fformat%3Djson HTTP/1.0 403 - fog/1.10.1 R0VUCgoKVHVlLCAwOSBBcHIgMjAxMyAxNDoyMjo1OCArMDAwMAov - 124 - txaa0b3bc86d924fe8af24b69720859245 - 0.0167 -
+
