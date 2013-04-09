@@ -39,8 +39,8 @@ EOF
 
 
 #-- Getting S3 like tokens
-source eucarc
-echo "EC2 URL is $EC2_URL"
-echo "S3 URL is $S3_URL"
-echo "demo:demo EC2 access key is $EC2_ACCESS_KEY"
-echo "demo:demo EC2 secret key is $EC2_SECRET_KEY"
+#source eucarc
+#echo "EC2 URL is $EC2_URL"
+#echo "S3 URL is $S3_URL"
+#echo "EC2 access key is $EC2_ACCESS_KEY"
+#echo "EC2 secret key is $EC2_SECRET_KEY"
