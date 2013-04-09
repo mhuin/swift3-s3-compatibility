@@ -24,6 +24,7 @@ class TestFog < Test::Unit::TestCase
             to_discard.destroy
         end
         bucket.destroy
+        puts "cleaned previously existing test bucket"
     rescue
         puts "no cleanup needed, woohoo"
     end 
@@ -36,10 +37,18 @@ class TestFog < Test::Unit::TestCase
     end
 
     def test_02_add_key
-        assert(false, "Not implemented yet")
+        bucket = @@connection.directories.get("fogs3testing")
+        file = bucket.files.create(
+          :key                      => 'data.txt',
+          :body                     => "This was uploaded with the fog library"
+        )
+        assert_equal(1, bucket.files.all.size)
+        assert_nil(bucket.files.head('non_existent_file.txt'))
+        assert_not_nil(bucket.files.head('data.txt'))
     end
 
     def test_03_modify_key
+
         assert(false, "Not implemented yet")
     end
 
