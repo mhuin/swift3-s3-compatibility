@@ -10,14 +10,30 @@ Excon.defaults[:ssl_verify_peer] = false
 
 class TestFog < Test::Unit::TestCase
     # ruby TestCase doesn't have anything similar to setup_class
-    @@connection = Fog::Storage.new({
-          :provider                 => 'AWS',
-          :aws_secret_access_key    => SECRET_KEY,
-          :aws_access_key_id        => ACCESS_KEY,
-          :scheme                   => 'http',
-          :host                     => S3_HOST,
-          :port                     => S3_PORT
-        })
+    begin
+        # fix to support ordinary paths calls rather than subdomain calls
+        # see https://github.com/fog/fog/issues/1631
+        # the pull request was a month old at the time of this writing, so
+        # the fix might not be in current packaged versions of the library.
+        @@connection = Fog::Storage.new({
+              :provider                 => 'AWS',
+              :aws_secret_access_key    => SECRET_KEY,
+              :aws_access_key_id        => ACCESS_KEY,
+              :scheme                   => 'http',
+              :host                     => S3_HOST,
+              :port                     => S3_PORT,
+              :path_style               => true
+            })
+    rescue
+        @@connection = Fog::Storage.new({
+              :provider                 => 'AWS',
+              :aws_secret_access_key    => SECRET_KEY,
+              :aws_access_key_id        => ACCESS_KEY,
+              :scheme                   => 'http',
+              :host                     => S3_HOST,
+              :port                     => S3_PORT,
+            })
+    end
     begin
         bucket = @@connection.directories.get("fogs3testing")
         bucket.files.each do |to_discard|
