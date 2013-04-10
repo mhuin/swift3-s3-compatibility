@@ -13,6 +13,7 @@ import com.enovance.app.S3JClouds;
 public class JCloudsTest 
     extends TestCase
 {
+    public static S3JClouds connection;
     /**
      * Create the test case
      *
@@ -37,7 +38,8 @@ public class JCloudsTest
         String s3url = System.getenv("S3_URL");
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
-        //this.connection = new S3Jclouds(s3url,access_key, secret_key)
+        connection = new S3JClouds(s3url,access_key, secret_key);
+        connection.delete_bucket("jCloudsTestBucketS3ForTesting");
     }
 
     public void test01CreateBucket()
