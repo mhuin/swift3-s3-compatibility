@@ -5,10 +5,23 @@
 # run this script on the VM.
 # It is assumed the devstack environment is ready. If not, run setdevstack.sh
 
-# do not forget to source eucarc before !
+# needed dependencies and libraries and what have you
 
-# or set your own credentials in a file
+sudo aptitude update && sudo aptitude install python-boto python-libcloud \
+     ruby-fog ruby rubygems maven python-nose openjdk-6-jdk
+
+#-- uncomment to install fog from gem
+# sudo gem install fog
+
+# looking for your own credentials in a file
 [ -f S3Keys ] && source S3Keys
+
+# uncomment to get S3-like credentials for swift3
+#source /PATH/TO/DEVSTACK/eucarc
+#echo "EC2 URL is $EC2_URL"
+#echo "S3 URL is $S3_URL"
+#echo "EC2 access key is $EC2_ACCESS_KEY"
+#echo "EC2 secret key is $EC2_SECRET_KEY"
 
 #-- boto
 echo "Testing boto library"
