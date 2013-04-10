@@ -5,7 +5,7 @@
 #-- installing what's needed
 
 sudo aptitude update && sudo aptitude install python-netaddr git python-boto \
-     python-libcloud ruby-fog ruby maven python-nose
+     python-libcloud ruby-fog ruby rubygems maven python-nose openjdk-6-jdk
 
 if [ ! -d ./devstack ]; then 
     echo "pulling devstack"
