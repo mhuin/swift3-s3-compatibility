@@ -13,7 +13,7 @@ import com.enovance.app.S3JClouds;
 public class JCloudsTest 
     extends TestCase
 {
-    public static S3JClouds connection;
+
     /**
      * Create the test case
      *
@@ -33,18 +33,29 @@ public class JCloudsTest
     }
 
     @BeforeClass
-    public static void setUpClass()
+    public void setUpClass()
     {
         String s3url = System.getenv("S3_URL");
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
-        connection = new S3JClouds(s3url,access_key, secret_key);
-        connection.delete_bucket("jCloudsTestBucketS3ForTesting");
+        S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
+        connection.delete_bucket("jcloudstestbuckets3fortesting");
+        // give some time to execute
+        try{
+            Thread.sleep(5000);
+        }catch(Exception e){
+        }
     }
 
     public void test01CreateBucket()
     {
-        assertTrue( true );
+        String s3url = System.getenv("S3_URL");
+        String access_key = System.getenv("EC2_ACCESS_KEY");
+        String secret_key = System.getenv("EC2_SECRET_KEY");
+        S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
+        boolean a = connection.create_bucket("jcloudstestbuckets3fortesting");
+        assertTrue( a );
+
     }
     public void test02AddKey()
     {
