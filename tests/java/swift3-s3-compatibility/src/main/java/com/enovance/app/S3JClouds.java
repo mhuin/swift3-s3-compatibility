@@ -1,10 +1,10 @@
 package com.enovance.app;
 
 /**
- * Hello world!
+ * Jcloud
  *
  */
-public class App 
+public class S3JClouds 
 {
     public static void main( String[] args )
     {
