@@ -6,7 +6,8 @@ import boto
 import boto.s3.connection
 import boto.s3.key
 import boto.exception
-import StringIO
+import urllib2
+
 from common import s3_parsed_url, access_key, secret_key
 
 
@@ -38,12 +39,9 @@ class TestBoto:
 
     def test_02_add_key(self):
         """Adding a key"""
-        fp = StringIO.StringIO()
-        fp.write('This was uploaded to swift from Boto.\n')
         bucket = self.connection.get_bucket("boto_s3")
         key = boto.s3.key.Key(bucket, "uploaded_from_s3.txt")
-        key.set_contents_from_file(fp)
-        fp.close()
+        key.set_contents_from_string('This was uploaded to swift from Boto.\n')
         #assert key
 
     def test_03_modify_key(self):
@@ -52,13 +50,20 @@ class TestBoto:
         keys = [ x for x in bucket.get_all_keys() 
                  if x.name == "uploaded_from_s3.txt" ]
         assert len(keys) == 1
-        fp = StringIO.StringIO()
-        fp.write('This was modified/uploaded to swift from Boto.\n')
-        keys[0].set_contents_from_file(fp)
-        fp.close()
+        keys[0].set_contents_from_string('This was modified/uploaded to swift from Boto.\n')
         #assert keys[0]
 
-    def test_04_delete(self):
+    def test_04_download_from_QSA(self):
+        """Using Query String Authentication to access a key"""
+        bucket = self.connection.get_bucket("boto_s3")
+        key = bucket.get_key("uploaded_from_s3.txt")
+        assert key
+        qsa = key.generate_url(600, method = 'GET')
+        response = urllib2.urlopen(qsa)
+        txt = response.read()
+        assert ( txt == 'This was modified/uploaded to swift from Boto.\n' )
+
+    def test_05_delete(self):
         """Deleting everything"""
         bucket = self.connection.get_bucket("boto_s3")
         for x in bucket.get_all_keys():
