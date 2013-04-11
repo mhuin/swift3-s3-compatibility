@@ -13,3 +13,22 @@ proxy-server STDOUT: WARNING:root:parameter timeout has been deprecated, use tim
 proxy-server Using identity: {'roles': [u'Member', u'anotherrole'], 'user': u'demo', 'tenant': (u'0b80d498d3b44d32af45fadba3b70fef', u'demo')} (txn: tx1da0cb838cee4a67adfe89b2d0a53edb)
 proxy-server allow user with role member as account admin (txn: tx1da0cb838cee4a67adfe89b2d0a53edb) (client_ip: 46.231.128.136)
 proxy-server 46.231.128.136 46.231.128.136 08/Apr/2013/14/27/38 GET /v1/AUTH_0b80d498d3b44d32af45fadba3b70fef/boto_s3%3Fformat%3Djson%26limit%3D1 HTTP/1.0 499 - Boto/2.2.2%20%28linux2%29 f0ad2d24a36d42d092bae6f7883b2041 - 70 - tx1da0cb838cee4a67adfe89b2d0a53edb - 0.0093 -
+proxy-server Calling Swift3 Middleware (txn: tx2dd7f390d7784be9b006fd432e935435)
+proxy-server {'headers': {'Connection': 'close', 'Content-Type': None, 'Host': '10.43.75.9:8080', 'A
+ccept-Encoding': 'identity', 'User-Agent': 'Python-urllib/2.7'}, 'environ': {'SCRIPT_NAME': '', 'REQ
+UEST_METHOD': 'GET', 'PATH_INFO': '/boto_s3/uploaded_from_s3.txt', 'SERVER_PROTOCOL': 'HTTP/1.0', 'Q
+UERY_STRING': 'Signature=4fC7SscBsc%2Fsf9yH2W4p1WyNZPc%3D&Expires=1365679953&AWSAccessKeyId=8dd39ca4
+4c5b4edba283f43c71c782be', 'HTTP_USER_AGENT': 'Python-urllib/2.7', 'HTTP_CONNECTION': 'close', 'REMO
+TE_PORT': '35378', 'SERVER_NAME': '10.43.75.9', 'REMOTE_ADDR': '10.43.75.9', 'eventlet.input': <even
+tlet.wsgi.Input object at 0x28c4990>, 'wsgi.url_scheme': 'http', 'SERVER_PORT': '8080', 'wsgi.input'
+: <swift.common.utils.InputProxy object at 0x28c4b10>, 'HTTP_HOST': '10.43.75.9:8080', 'swift.cache'
+: <swift.common.memcached.MemcacheRing object at 0x2840650>, 'wsgi.multithread': True, 'eventlet.pos
+thooks': [], 'wsgi.version': (1, 0), 'RAW_PATH_INFO': '/boto_s3/uploaded_from_s3.txt', 'GATEWAY_INTE
+RFACE': 'CGI/1.1', 'wsgi.run_once': False, 'wsgi.errors': <swift.common.utils.LoggerFileObject objec
+t at 0x2187d10>, 'wsgi.multiprocess': False, 'swift.trans_id': 'tx2dd7f390d7784be9b006fd432e935435',
+ 'CONTENT_TYPE': None, 'HTTP_ACCEPT_ENCODING': 'identity'}}
+proxy-server 10.43.75.9 10.43.75.9 11/Apr/2013/11/22/33 GET /boto_s3/uploaded_from_s3.txt%3FSignatur
+e%3D4fC7SscBsc%252Fsf9yH2W4p1WyNZPc%253D%26Expires%3D1365679953%26AWSAccessKeyId%3D8dd39ca44c5b4edba
+283f43c71c782be HTTP/1.0 403 - Python-urllib/2.7 - - 124 - tx2dd7f390d7784be9b006fd432e935435 - 0.00
+16 -
+
