@@ -39,7 +39,7 @@ public class JCloudsTest
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
         S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
-        connection.delete_bucket("jcloudstestbuckets3fortesting6");
+        connection.delete_bucket("jcloudstestbucket");
         // give some time to execute
         try{
             Thread.sleep(5000);
@@ -53,7 +53,7 @@ public class JCloudsTest
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
         S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
-        boolean a = connection.create_bucket("jcloudstestbuckets3fortesting6");
+        boolean a = connection.create_bucket("jcloudstestbucket");
         assertTrue( a );
 
     }
@@ -63,7 +63,7 @@ public class JCloudsTest
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
         S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
-        connection.upload_file("test_s3.txt", "this was uploaded with jclouds.\n", "jcloudstestbuckets3fortesting6");
+        connection.upload_file("test_s3.txt", "this was uploaded with jclouds.\n", "jcloudstestbucket");
         // needs a better way to check the file is there
         assertTrue( true );
     }
@@ -73,12 +73,24 @@ public class JCloudsTest
         String access_key = System.getenv("EC2_ACCESS_KEY");
         String secret_key = System.getenv("EC2_SECRET_KEY");
         S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
-        connection.upload_file("test_s3.txt", "this was modified with jclouds.\n", "jcloudstestbuckets3fortesting6");
+        connection.upload_file("test_s3.txt", "this was modified with jclouds.\n", "jcloudstestbucket");
         // needs a better way to check the file is modified
         assertTrue( true );
     }
     public void test04Delete()
     {
+        String s3url = System.getenv("S3_URL");
+        String access_key = System.getenv("EC2_ACCESS_KEY");
+        String secret_key = System.getenv("EC2_SECRET_KEY");
+        S3JClouds connection = new S3JClouds(s3url, access_key, secret_key);
+        connection.delete_file("jcloudstestbucket", "test_s3.txt");
+        // give some time to execute
+        try{
+            Thread.sleep(5000);
+        }catch(Exception e){
+        }
+        connection.delete_bucket("jcloudstestbucket");
+        //again, needs a better check
         assertTrue( true );
     }
 }
