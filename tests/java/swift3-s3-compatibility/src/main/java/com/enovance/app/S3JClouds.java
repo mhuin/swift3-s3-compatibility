@@ -11,6 +11,13 @@ import org.jclouds.blobstore.BlobStore;
 import org.jclouds.blobstore.BlobStoreContext;
 import org.jclouds.blobstore.domain.Blob;
 import java.util.Properties;
+import java.io.IOException;
+
+//import org.jclouds.logging.log4j.config.Log4JLoggingModule;
+//import org.jclouds.logging.config.ConsoleLoggingModule;
+import com.google.inject.Module;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 
 public class S3JClouds 
 {
@@ -32,10 +39,12 @@ public class S3JClouds
     
     public BlobStoreContext get_context()
     {
+//        Iterable<Module> modules = ImmutableSet.<Module> of(new ConsoleLoggingModule());
         BlobStoreContext ctx = ContextBuilder.newBuilder("s3")
                                  .endpoint(s3url)
                                  .credentials(access_key, secret_key)
                                  .overrides(overrides)
+//                                 .modules(modules)
                                  .buildView(BlobStoreContext.class);
         return ctx;
     }
@@ -74,6 +83,5 @@ public class S3JClouds
         blobStore.removeBlob(bucketname, filename);
         ctx.close();
     }
-
 
 }
