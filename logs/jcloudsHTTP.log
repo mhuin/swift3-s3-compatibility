@@ -1,4 +1,21 @@
 PUT /jcloudstestbucket HTTP/1.1
+Date: Fri, 12 Apr 2013 13:52:59 GMT
+Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:zCk4KAo9chM0s0vYoV6B99bgZsk=
+User-Agent: jclouds/1.5.9 java/1.6.0_27
+Host: localhost:8087
+Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+Connection: keep-alive
+Content-Length: 0
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Location: jcloudstestbucket
+Content-Length: 0
+X-Trans-Id: txeffddead4e5f4641bc11566a5eab28e4
+Date: Fri, 12 Apr 2013 13:53:20 GMT
+Connection: keep-alive
+
+PUT /jcloudstestbucket HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:21 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:ITuPJTq/MU2JAaS43vofuZUNYE0=
 User-Agent: jclouds/1.5.9 java/1.6.0_27

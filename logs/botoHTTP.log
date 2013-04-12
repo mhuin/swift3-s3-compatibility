@@ -1,3 +1,18 @@
+PUT /jcloudstestbucket/ HTTP/1.1
+Host: localhost:8087
+Accept-Encoding: identity
+Date: Fri, 12 Apr 2013 13:50:31 GMT
+Content-Length: 0
+Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:CjhCuzp3avSZhrGDflCcCxzhlvQ=
+User-Agent: Boto/2.3.0 (linux2)
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Location: jcloudstestbucket
+Content-Length: 0
+X-Trans-Id: txdddc805deb264730a446a9e0c46fb624
+Date: Fri, 12 Apr 2013 13:50:52 GMT
+
 GET / HTTP/1.1
 Host: localhost:8087
 Accept-Encoding: identity
