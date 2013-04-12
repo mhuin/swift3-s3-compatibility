@@ -12,7 +12,15 @@ Content-Type: application/xml
 X-Trans-Id: txe1b96aa8a225424c9bc2d724fa58cc6a
 Date: Fri, 12 Apr 2013 12:05:46 GMT
 
-<?xml version="1.0" encoding="UTF-8"?><ListAllMyBucketsResult xmlns="http://doc.s3.amazonaws.com/2006-03-01"><Buckets><Bucket><Name>jcloudstestbucket</Name><CreationDate>2009-02-03T16:45:09.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>
+<?xml version="1.0" encoding="UTF-8"?>
+<ListAllMyBucketsResult xmlns="http://doc.s3.amazonaws.com/2006-03-01">
+    <Buckets>
+        <Bucket>
+            <Name>jcloudstestbucket</Name>
+            <CreationDate>2009-02-03T16:45:09.000Z</CreationDate>
+        </Bucket>
+    </Buckets>
+</ListAllMyBucketsResult>
 
 GET /jcloudstestbucket/?&max-keys=0 HTTP/1.1
 Host: localhost:8087
@@ -28,7 +36,15 @@ Content-Type: application/xml
 X-Trans-Id: tx06666afe85a54e4cb68bad040de34049
 Date: Fri, 12 Apr 2013 12:06:46 GMT
 
-<?xml version="1.0" encoding="UTF-8"?><ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01"><Prefix></Prefix><Marker></Marker><Delimiter></Delimiter><IsTruncated>false</IsTruncated><MaxKeys>0</MaxKeys><Name>jcloudstestbucket</Name></ListBucketResult>
+<?xml version="1.0" encoding="UTF-8"?>
+<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01">
+    <Prefix></Prefix>
+    <Marker></Marker>
+    <Delimiter></Delimiter>
+    <IsTruncated>false</IsTruncated>
+    <MaxKeys>0</MaxKeys>
+    <Name>jcloudstestbucket</Name>
+</ListBucketResult>
 
 PUT /jcloudstestbucket/testytested.txt HTTP/1.1
 Host: localhost:8087

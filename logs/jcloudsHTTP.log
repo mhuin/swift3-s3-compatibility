@@ -19,6 +19,7 @@ Connection: keep-alive
   <Code>BucketAlreadyExists</Code>
   <Message>The requested bucket name is not available</Message>
 </Error>
+
 GET /jcloudstestbucket?acl HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:22 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:8VWF+VIWVN0bccXqTB27XXhj2DY=
@@ -34,7 +35,23 @@ X-Trans-Id: txfbe75b23cd3c4a71a0f33b03cde9fd64
 Date: Fri, 12 Apr 2013 12:27:43 GMT
 Connection: keep-alive
 
-<AccessControlPolicy><Owner><ID>4a4361f221164e4ea340a7e6db7efbb7</ID><DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName></Owner><AccessControlList><Grant><Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser"><ID>4a4361f221164e4ea340a7e6db7efbb7</ID><DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList></AccessControlPolicy>PUT /jcloudstestbucket/test_s3.txt HTTP/1.1
+<AccessControlPolicy>
+    <Owner>
+        <ID>4a4361f221164e4ea340a7e6db7efbb7</ID>
+        <DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName>
+    </Owner>
+    <AccessControlList>
+        <Grant>
+            <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
+                <ID>4a4361f221164e4ea340a7e6db7efbb7</ID>
+                <DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName>
+            </Grantee>
+            <Permission>FULL_CONTROL</Permission>
+        </Grant>
+    </AccessControlList>
+</AccessControlPolicy>
+
+PUT /jcloudstestbucket/test_s3.txt HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:22 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:PtTCtu6dbLrncqEImF2aAKBFA7U=
 User-Agent: jclouds/1.5.9 java/1.6.0_27
@@ -45,6 +62,7 @@ Connection: keep-alive
 Content-Length: 32
 
 this was uploaded with jclouds.
+
 HTTP/1.1 404 Not Found
 Content-Length: 146
 Content-Type: text/xml
@@ -57,6 +75,7 @@ Connection: keep-alive
   <Code>NoSuchBucket</Code>
   <Message>The specified bucket does not exist</Message>
 </Error>
+
 GET /jcloudstestbucket?acl HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:22 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:8VWF+VIWVN0bccXqTB27XXhj2DY=
@@ -72,7 +91,23 @@ X-Trans-Id: txe9860590b98c41cb8173bc320e7a6a8e
 Date: Fri, 12 Apr 2013 12:27:43 GMT
 Connection: keep-alive
 
-<AccessControlPolicy><Owner><ID>4a4361f221164e4ea340a7e6db7efbb7</ID><DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName></Owner><AccessControlList><Grant><Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser"><ID>4a4361f221164e4ea340a7e6db7efbb7</ID><DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList></AccessControlPolicy>PUT /jcloudstestbucket/test_s3.txt HTTP/1.1
+<AccessControlPolicy>
+    <Owner>
+        <ID>4a4361f221164e4ea340a7e6db7efbb7</ID>
+        <DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName>
+    </Owner>
+    <AccessControlList>
+        <Grant>
+            <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
+                <ID>4a4361f221164e4ea340a7e6db7efbb7</ID>
+                <DisplayName>4a4361f221164e4ea340a7e6db7efbb7</DisplayName>
+            </Grantee>
+            <Permission>FULL_CONTROL</Permission>
+        </Grant>
+    </AccessControlList>
+</AccessControlPolicy>
+
+PUT /jcloudstestbucket/test_s3.txt HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:22 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:PtTCtu6dbLrncqEImF2aAKBFA7U=
 User-Agent: jclouds/1.5.9 java/1.6.0_27
@@ -83,6 +118,7 @@ Connection: keep-alive
 Content-Length: 32
 
 this was modified with jclouds.
+
 HTTP/1.1 404 Not Found
 Content-Length: 146
 Content-Type: text/xml
@@ -95,6 +131,7 @@ Connection: keep-alive
   <Code>NoSuchBucket</Code>
   <Message>The specified bucket does not exist</Message>
 </Error>
+
 DELETE /jcloudstestbucket/test_s3.txt HTTP/1.1
 Date: Fri, 12 Apr 2013 12:27:23 GMT
 Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:N1rtXKs0qhPZED6oiErqUha2WM0=
