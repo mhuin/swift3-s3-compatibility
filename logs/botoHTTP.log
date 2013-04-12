@@ -1,0 +1,52 @@
+GET / HTTP/1.1
+Host: localhost:8087
+Accept-Encoding: identity
+Date: Fri, 12 Apr 2013 12:05:25 GMT
+Content-Length: 0
+Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:jYHF8rPhFxEDoAqMqzbAO0Tpxq0=
+User-Agent: Boto/2.3.0 (linux2)
+
+HTTP/1.1 200 OK
+Content-Length: 253
+Content-Type: application/xml
+X-Trans-Id: txe1b96aa8a225424c9bc2d724fa58cc6a
+Date: Fri, 12 Apr 2013 12:05:46 GMT
+
+<?xml version="1.0" encoding="UTF-8"?><ListAllMyBucketsResult xmlns="http://doc.s3.amazonaws.com/2006-03-01"><Buckets><Bucket><Name>jcloudstestbucket</Name><CreationDate>2009-02-03T16:45:09.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>
+
+GET /jcloudstestbucket/?&max-keys=0 HTTP/1.1
+Host: localhost:8087
+Accept-Encoding: identity
+Date: Fri, 12 Apr 2013 12:06:25 GMT
+Content-Length: 0
+Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:m24Kg6DrxNsolE4nbwjGBgl+OrQ=
+User-Agent: Boto/2.3.0 (linux2)
+
+HTTP/1.1 200 OK
+Content-Length: 261
+Content-Type: application/xml
+X-Trans-Id: tx06666afe85a54e4cb68bad040de34049
+Date: Fri, 12 Apr 2013 12:06:46 GMT
+
+<?xml version="1.0" encoding="UTF-8"?><ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01"><Prefix></Prefix><Marker></Marker><Delimiter></Delimiter><IsTruncated>false</IsTruncated><MaxKeys>0</MaxKeys><Name>jcloudstestbucket</Name></ListBucketResult>
+
+PUT /jcloudstestbucket/testytested.txt HTTP/1.1
+Host: localhost:8087
+Accept-Encoding: identity
+Content-Length: 11
+Content-MD5: 4hUWKxHI+S+ww1rxyZxpKQ==
+Expect: 100-Continue
+Date: Fri, 12 Apr 2013 12:10:32 GMT
+User-Agent: Boto/2.3.0 (linux2)
+Content-Type: application/octet-stream
+Authorization: AWS 4a4361f221164e4ea340a7e6db7efbb7:DBiF1gchWgAtB5BLng40G3lBwpI=
+
+tetstststst
+
+HTTP/1.1 200 OK
+Etag: "e215162b11c8f92fb0c35af1c99c6929"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 0
+X-Trans-Id: txf3baa047283447b1a1a7d97af709a4c2
+Date: Fri, 12 Apr 2013 12:10:53 GMT
+
