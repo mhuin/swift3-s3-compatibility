@@ -35,6 +35,25 @@ The tested swift3 version is the master branch at the time of this writing.
 Results
 -------
 
+||    Action      ||  boto  | libcloud |   fog   | jclouds ||
+-------------------------------------------------------------
+|| Create Bucket  ||   X    |          |    X    |    X    ||
+-------------------------------------------------------------
+|| Create Object  ||   X    |          |    X    |         ||
+-------------------------------------------------------------
+|| Upload content ||   X    |          |    X    |         ||
+-------------------------------------------------------------
+|| Modify content ||   X    |          |    X    |         ||
+-------------------------------------------------------------
+|| Delete Object  ||   X    |          |    X    |         ||
+-------------------------------------------------------------
+|| Delete Bucket  ||   X    |          |    X    |    X    ||
+-------------------------------------------------------------
+
+
+Comments
+--------
+
 boto
 ....
 
@@ -97,4 +116,29 @@ to create, modify or delete objects in a bucket; attempts to do so trigger a
 client) in the swift-container server. The proxy reforwards it as a "Not Found"
 error.
 
+Upon closer inspection, it appears that jclouds HTTP calls set the "Accept"
+header in a way that doesn't please the container server: see this
+https://github.com/openstack/swift/blob/master/swift/container/server.py#L387
+The call works on Amazon S3, so swift container server might be a bit too
+strict.
 
+swift3
+......
+
+A few improvements could be made to swift3 to increase the compatibility with
+existing libraries:
+
+* Support for QSA: This could be highly desirable as QSA makes it easier to
+  share a resource with a simple, "all-in-one" URL.
+* Either make swift container server less strict when dealing with the "Accept"
+  header or prevent it with a middleware, by modifying the the header
+  beforehand.
+* Support for vhost-like/subdomain bucket addresses : there might be a
+  middleware existing for this ?
+  http://docs.openstack.org/developer/swift/misc.html#module-swift.common.middleware.cname_lookup
+
+
+Next steps
+----------
+
+* Test ACL handling.
