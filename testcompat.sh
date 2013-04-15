@@ -49,7 +49,7 @@ else
 fi
 
 #-- jclouds
-#echo "Testing jclouds library"
-#echo "------------"
-
+echo "Testing jclouds library"
+echo "------------"
+cd tests/java/swift3-s3-compatibility/ && mvn test 
 
